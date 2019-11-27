@@ -57,7 +57,7 @@ public class HDFSClient {
         FileSystem fs = FileSystem.get(new URI("hdfs://localhost:9000"), conf, "ysir");
 
         // 2、执行上传
-        fs.copyToLocalFile(new Path("/usr/ysir/水电费.xlsx"), new Path("/Users/ysir/temp/水电费.txt"));
+        fs.copyToLocalFile(new Path("/usr/ysir/水电费.xlsx"), new Path("/Users/ysir/temp/水电费.out"));
 
         // 3、关闭资源
         fs.close();

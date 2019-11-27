@@ -1,0 +1,4 @@
+Hadoop/src/main/resources/*
+Hadoop/target/*
+.*DS_Store
+idea/*
