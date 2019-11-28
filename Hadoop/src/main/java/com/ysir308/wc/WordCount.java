@@ -1,4 +1,4 @@
-package com.ysir308;
+package com.ysir308.wc;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
@@ -8,6 +8,7 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
+import org.apache.hadoop.mapreduce.lib.input.CombineTextInputFormat;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
@@ -35,6 +36,11 @@ public class WordCount {
         // 5、设置最终输出的key和value类型
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(IntWritable.class);
+
+        // 如果不设置InputFormat，默认使用的是TextInputFormat.class
+        job.setInputFormatClass(CombineTextInputFormat.class);
+        // 虚拟存储切片最大值设置4M
+        CombineTextInputFormat.setMaxInputSplitSize(job, 4194304);
 
         // 6、设置输入路径和输出路径
         FileInputFormat.setInputPaths(job, new Path(args[0]));

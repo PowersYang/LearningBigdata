@@ -1,4 +1,4 @@
-package com.ysir308;
+package com.ysir308.flowcount;
 
 import org.apache.hadoop.io.Writable;
 

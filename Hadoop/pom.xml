@@ -52,7 +52,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>com.ysir308.WordCount</mainClass>
+                            <mainClass>com.ysir308.wc.WordCount</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

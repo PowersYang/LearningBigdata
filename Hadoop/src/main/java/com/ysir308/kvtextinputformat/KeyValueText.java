@@ -1,4 +1,4 @@
-package com.ysir308;
+package com.ysir308.kvtextinputformat;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
