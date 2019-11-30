@@ -1,4 +1,4 @@
-package com.ysir308.tablejoin;
+package com.ysir308.reducejoin;
 
 import org.apache.hadoop.io.Writable;
 
