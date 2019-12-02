@@ -37,7 +37,7 @@ public class Server {
 
         String path = zkClient.create("/servers/server", hostname.getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL_SEQUENTIAL);
 
-        System.out.println(hostname + "is online ");
+        System.out.println(hostname + "is online");
     }
 
     private void business() {
