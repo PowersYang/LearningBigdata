@@ -29,6 +29,8 @@ public class CallBackProducer {
                         System.out.println(recordMetadata.partition());
                         System.out.println(recordMetadata.offset());
                         System.out.println("-----------------------");
+                    } else {
+                        e.printStackTrace();
                     }
                 }
             });
