@@ -20,6 +20,8 @@ public class CallBackProducer {
         for (int i = 0; i < 10; i++) {
 
             producer.send(new ProducerRecord<String, String>("first", "ysir " + i), new Callback() {
+
+                @Override
                 public void onCompletion(RecordMetadata recordMetadata, Exception e) {
 
                     // 成功的话返回的是RecordMetadata，失败了返回的是Exception
