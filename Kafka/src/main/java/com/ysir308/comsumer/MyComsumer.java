@@ -28,22 +28,27 @@ public class MyComsumer {
         // 消费者组
         prop.put(ConsumerConfig.GROUP_ID_CONFIG, "bigdata");
 
+        // 重置消费者的offset
+        prop.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
+
         // 创建消费者
         KafkaConsumer<String, String> consumer = new KafkaConsumer(prop);
 
         // 订阅主题
         consumer.subscribe(Arrays.asList("first", "second"));
 
-        ConsumerRecords<String, String> consumerRecords = consumer.poll(100);
+        while (true) {
+            ConsumerRecords<String, String> consumerRecords = consumer.poll(100);
 
-        for (ConsumerRecord<String, String> record : consumerRecords) {
-            System.out.println("----------" + record.topic() + "-----------");
-            System.out.println(record.key());
-            System.out.println(record.value());
-            System.out.println(record.offset());
-            System.out.println("---------------------");
+            for (ConsumerRecord<String, String> record : consumerRecords) {
+                System.out.println("----------" + record.topic() + "----------");
+                System.out.println(record.key());
+                System.out.println(record.value());
+                System.out.println(record.offset());
+                System.out.println("---------------------------");
+            }
         }
 
-        consumer.close();
+
     }
 }
