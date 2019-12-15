@@ -8,8 +8,11 @@ import java.util.Map;
 public class MyPartitioner implements Partitioner {
 
     @Override
-    public int partition(String s, Object o, byte[] bytes, Object o1, byte[] bytes1, Cluster cluster) {
-        return 0;
+    public int partition(String topic, Object key, byte[] bytes, Object o1, byte[] bytes1, Cluster cluster) {
+
+        Integer num = cluster.partitionCountForTopic(topic);
+
+        return key.toString().hashCode() % num;
     }
 
     @Override
