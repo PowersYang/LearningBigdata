@@ -85,7 +85,6 @@ public class TestAPI {
 
         // 创建表
         admin.createTable(hTableDescriptor);
-
     }
 
     /**
@@ -101,7 +100,6 @@ public class TestAPI {
 
         admin.disableTable(TableName.valueOf(tableName));
         admin.deleteTable(TableName.valueOf(tableName));
-
     }
 
     /**
@@ -169,16 +167,65 @@ public class TestAPI {
         Result result = table.get(get);
 
         if (!result.isEmpty()) {
-            Cell[] cells = result.rawCells();
-            for (Cell cell : cells) {
+            for (Cell cell : result.rawCells()) {
                 System.out.println("-------------------------");
                 System.out.println("列族： " + Bytes.toString(CellUtil.cloneFamily(cell)));
                 System.out.println("列： " + Bytes.toString(CellUtil.cloneQualifier(cell)));
                 System.out.println("值： " + Bytes.toString(CellUtil.cloneValue(cell)));
             }
         }
+
+        table.close();
     }
 
+    /**
+     * 扫描全表
+     *
+     * @param tableName
+     * @throws IOException
+     */
+    public static void scanTable(String tableName) throws IOException {
+
+        Table table = conn.getTable(TableName.valueOf(tableName));
+
+        Scan scan = new Scan();
+
+        ResultScanner scanner = table.getScanner(scan);
+
+        for (Result result : scanner) {
+            for (Cell cell : result.rawCells()) {
+                System.out.println("-------------------------");
+                System.out.println("RowKey： " + Bytes.toString(CellUtil.cloneRow(cell)));
+                System.out.println("列族： " + Bytes.toString(CellUtil.cloneFamily(cell)));
+                System.out.println("列： " + Bytes.toString(CellUtil.cloneQualifier(cell)));
+                System.out.println("值： " + Bytes.toString(CellUtil.cloneValue(cell)));
+            }
+        }
+
+        table.close();
+    }
+
+
+    /**
+     * 删除数据
+     *
+     * @param tableName
+     * @param rowKey
+     * @param cf
+     * @param cn
+     * @throws IOException
+     */
+    public static void deleteData(String tableName, String rowKey, String cf, String cn) throws IOException {
+
+        Table table = conn.getTable(TableName.valueOf(tableName));
+
+        Delete delete = new Delete(Bytes.toBytes(rowKey));
+        delete.addColumns(Bytes.toBytes(cf), Bytes.toBytes(cn));
+
+        table.delete(delete);
+
+        table.close();
+    }
 
     public static void close() {
 
