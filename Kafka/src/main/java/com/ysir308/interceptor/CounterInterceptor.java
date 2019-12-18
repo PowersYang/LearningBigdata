@@ -6,6 +6,9 @@ import org.apache.kafka.clients.producer.RecordMetadata;
 
 import java.util.Map;
 
+/**
+ * 统计传输成功与失败的记录数
+ */
 public class CounterInterceptor implements ProducerInterceptor {
 
     int success;

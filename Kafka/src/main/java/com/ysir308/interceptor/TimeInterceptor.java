@@ -6,6 +6,9 @@ import org.apache.kafka.clients.producer.RecordMetadata;
 
 import java.util.Map;
 
+/**
+ * 在传入的数据中添加时间戳
+ */
 public class TimeInterceptor implements ProducerInterceptor {
 
 
