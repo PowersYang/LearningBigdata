@@ -220,6 +220,8 @@ public class TestAPI {
         Table table = conn.getTable(TableName.valueOf(tableName));
 
         Delete delete = new Delete(Bytes.toBytes(rowKey));
+        // 在生产环境中尽量使用addColumns()方法，addColumn()方法慎用
+        // 不然会出现一些很诡异的现象
         delete.addColumns(Bytes.toBytes(cf), Bytes.toBytes(cn));
 
         table.delete(delete);

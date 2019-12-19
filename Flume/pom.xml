@@ -14,11 +14,6 @@
             <artifactId>flume-ng-core</artifactId>
             <version>1.7.0</version>
         </dependency>
-
-        <dependency>
-            <groupId></groupId>
-            <artifactId></artifactId>
-        </dependency>
     </dependencies>
 
 </project>
