@@ -56,7 +56,9 @@ public class FruitDriver2 implements Tool {
         Configuration conf = new Configuration();
 
         try {
+
             ToolRunner.run(conf, new FruitDriver2(), args);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
