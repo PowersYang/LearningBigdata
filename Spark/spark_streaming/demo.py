@@ -10,6 +10,9 @@ ssc = StreamingContext(sc, 1)
 
 lines = ssc.socketTextStream('localhost', 9999)
 
+# 更换数据源
+# lines = ssc.textFileStream("../in/streaming")
+
 words = lines.flatMap(lambda line: line.split(' '))
 
 pairs = words.map(lambda word: (word, 3))
